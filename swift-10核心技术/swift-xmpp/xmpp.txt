@@ -1,0 +1,25 @@
+
+
+
+重要：XMPPFramework服务端和客户端版本不同导致，需要进行修改
+
+
+NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:auth"];
+[query addChild:[NSXMLElement elementWithName:@"username" stringValue:username]];
+[query addChild:[NSXMLElement elementWithName:@"resource" stringValue:resource]];
+[query addChild:[NSXMLElement elementWithName:@"ClientVer" stringValue:@"5.5.1"]];
+[query addChild:[NSXMLElement elementWithName:@"digest"   stringValue:digest]];
+
+
+<query xmlns='jabber:iq:auth'>
+   <username>168江海3</username>
+   <resource>IphoneIM</resource>
+   <digest sid='59E416E7'>b731ed229207c4f958b40d75cd20c17a70a4ad04</digest>
+</query>
+
+<query xmlns='jabber:iq:auth'>
+   <username>168江海2</username>
+   <>WinduoIM</resource>
+   <ClientVer>5.4.134</ClientVer>
+   <digest sid='59E4172D'>cc09b67022cf801ab763ddfb2be42a5582ef7333</digest>
+</query>

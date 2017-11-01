@@ -1,0 +1,309 @@
+{\rtf1\ansi\ansicpg936\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset134 PingFangSC-Regular;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green0\blue0;\red128\green128\blue128;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c0;\csgenericrgb\c100000\c0\c0;\csgray\c57415;
+}
+\paperw11900\paperh16840\margl1440\margr1440\vieww15240\viewh11840\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf2 \
+
+\f1\fs36 \cf3 \'b5\'da\'d2\'bb\'d6\'d6\'a3\'ba
+\f2 \CocoaLigature0 UISearchController
+\f0\fs24 \cf2 \CocoaLigature1 \
+\
+1
+\f1 \'a1\'a2\CocoaLigature0 \'bc\'cc\'b3\'d0
+\f2 UISearchResultsUpdating
+\f1 \'d0\'ad\'d2\'e9
+\f2\fs22 \
+\
+
+\fs24 2
+\f1 \'a1\'a2\'cc\'ed\'bc\'d3
+\f2 2
+\f1 \'b8\'f6\'bf\'d8\'d6\'c6\'c6\'f7
+\f2\fs22 \
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf2 \
+
+\fs18 \cf4 @property (nonatomic, strong) UISearchController             *searchController;         //
+\f1 \'cb\'d1\'cb\'f7\'bf\'f2
+\f2 \
+@property (nonatomic, strong) AddCallSearchReasultController *searchReasultController;  
+\f1 \'a3\'af\'a3\'af\'cb\'d1\'cb\'f7\'bd\'e1\'b9\'fb\'bf\'d8\'d6\'c6\'c6\'f7
+\f2\fs22 \cf2 \
+\
+
+\fs24 3
+\f1 \'a1\'a2\'c0\'c1\'bc\'d3\'d4\'d8\'b7\'bd\'ca\'bd
+\f2\fs22 \
+
+\fs18 \cf4 - (UISearchController *)searchController\
+\{\
+    if (!_searchController)\{\
+        _searchController = [[UISearchController alloc] initWithSearchResultsController:self.searchReasultController];\
+        //
+\f1 \'d0\'de\'b8\'c4\'ce\'c4\'d7\'d6\'b5\'c4\'d1\'d5\'c9\'ab
+\f2 \
+        _searchController.searchBar.barTintColor = kRGB(241,241,241);\
+        _searchController.searchBar.layer.borderWidth = 0.5;\
+        _searchController.searchBar.layer.borderColor = kRGB(241,241,241).CGColor;\
+        _searchController.searchBar.placeholder = @"
+\f1 \'cb\'d1\'cb\'f7
+\f2 ";\
+        //UISearchController
+\f1 \'cb\'d1\'cb\'f7\'bf\'f2\'bd\'fb\'d6\'b9\'cf\'f2\'c9\'cf\'d2\'c6\'b6\'af
+\f2 \
+//        _searchController.hidesNavigationBarDuringPresentation = NO;   //
+\f1 \'c4\'ac\'c8\'cf
+\f2 YES\
+//        _searchController.dimsBackgroundDuringPresentation = NO;\
+        //
+\f1 \'c9\'e8\'d6\'c3\'b4\'fa\'c0\'ed
+\f2 \
+        _searchController.searchResultsUpdater = self;\
+    \}\
+    return _searchController;\
+\}\
+-(AddCallSearchReasultController *)searchReasultController\
+\{\
+    if (!_searchReasultController) \{\
+        _searchReasultController = [[AddCallSearchReasultController alloc]init];\
+    \}\
+    return _searchReasultController;\
+\}\
+\
+
+\fs24 \
+\cf2 4
+\f1 \'a1\'a2\'b4\'fa\'c0\'ed
+\f2\fs18 \cf4 \
+- (void)updateSearchResultsForSearchController:(UISearchController *)searchController\
+\{\
+    //
+\f1 \'bb\'f1\'c8\'a1\'cb\'d1\'cb\'f7\'b5\'c4\'c4\'da\'c8\'dd
+\f2 \
+    NSString *searchText = searchController.searchBar.text;\
+    if ([searchText isEqualToString:@""]) \{\
+        return;\
+    \}\
+    NSLog(@"
+\f1 \'cb\'d1\'cb\'f7\'b5\'c4\'b4\'ca\'bb\'e3\'a3\'ba
+\f2 == %@",searchText);\
+    \
+    //FIXME: SearchCoreManager\
+    [[SearchCoreManager shareManager] Search:searchText\
+                                 searchArray:nil\
+                                   nameMatch:self.searchReasultController.searchByName\
+                                  phoneMatch:self.searchReasultController.searchByPhone];\
+\
+    \
+    [self.searchReasultController.tableView reloadData];\
+    \
+    //
+\f1 \'cb\'d1\'cb\'f7
+\f2 \
+    __weak typeof(self) weakSelf = self;\
+    self.searchReasultController.addCallSearchResultControllerBlock = ^\{\
+        //
+\f1 \'bd\'e1\'ca\'f8\'cb\'d1\'cb\'f7\'b1\'e0\'bc\'ad
+\f2 \
+        [weakSelf.searchController.view endEditing:YES];\
+    \};\
+    self.searchReasultController.addCallSearchResultControllerCallActionBlock = ^(AddCallModel *model) \{\
+        //
+\f1 \'b2\'a6\'b4\'f2\'b5\'e7\'bb\'b0
+\f2 \
+        [weakSelf CallWithModel:model];\
+    \};\
+\}\
+\
+\
+\
+\
+5
+\f1 \'a1\'a2
+\f2 \
+- (void)setSeachBar\
+\{\
+    UISearchBar *_searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, 44)];\
+    _searchBar.backgroundImage = [UIImage imageNamed:@"searchBarBackground"];\
+    _searchBar.placeholder = @"
+\f1 \'cb\'d1\'cb\'f7
+\f2 ";\
+    [self.view addSubview:_searchBar];\
+    \
+    // 
+\f1 \'d4\'da
+\f2 _searchBar
+\f1 \'c9\'cf\'c3\'e6\'b8\'b2\'b8\'c7\'d2\'bb\'b4\'ce
+\f2 button
+\f1 \'a3\'ac\'bd\'f8\'d0\'d0\'cf\'ec\'d3\'a6\'cc\'f8\'d7\'aa\'a3\'ac\'a3\'a8\'d5\'e2\'c0\'ef\'b5\'c4
+\f2 _searchBar
+\f1 \'b2\'bb\'d7\'f6\'cb\'d1\'cb\'f7\'d3\'c3\'a3\'a9
+\f2 \
+    UIButton *searchButton = [[UIButton alloc] initWithFrame:_searchBar.frame];\
+    [searchButton addTarget:self action:@selector(searchGroupsButtonClick:) forControlEvents:UIControlEventTouchUpInside];\
+    [self.view addSubview:searchButton];\
+\}
+\fs22 \cf2 \
+\
+\
+\
+\
+
+\f1\fs36 \cf3 \'b5\'da\'b6\'fe\'d6\'d6\'a3\'ba
+\f2 UISearchBar\
+
+\fs18 \cf2 \
+\
+\
+
+\fs24 1
+\f1 \'a1\'a2\'d0\'ad\'d2\'e9
+\fs18 \
+
+\f2 \cf4 UISearchBarDelegate
+\f1 \cf2 \
+\
+
+\fs24 2\'a1\'a2\'ca\'f4\'d0\'d4
+\fs18 \
+
+\f2 \cf4 @property (nonatomic, strong) UISearchBar *searchBar;\cf2 \
+\
+
+\fs24 3
+\f1 \'a1\'a2\'c0\'c1\'bc\'d3\'d4\'d8
+\f2\fs18 \
+\cf4 -(UISearchBar *)searchBar \{\
+    if (!_searchBar) \{\
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, IPHONE_WIDTH, 50)];\
+        //_searchBar.barStyle = UIBarStyleDefault;              //
+\f1 \'c4\'ac\'c8\'cf\'b7\'e7\'b8\'f1
+\f2 \
+        _searchBar.delegate = self;\
+        //_searchBar.text = @"
+\f1 \'cb\'d1\'cb\'f7
+\f2 1";                            //
+\f1 \'cb\'d1\'cb\'f7\'c4\'da\'c8\'dd
+\f2 \
+        //_searchBar.prompt = @"search2";                       //placeholder
+\f1 \'c9\'cf\'b2\'bf\'ce\'bb\'d6\'c3
+\f2 \
+        _searchBar.placeholder = @"search";\
+        //_searchBar.showsBookmarkButton =YES;                  //
+\f3 \uc0\u55357 \u56598 
+\f1 \'ca\'e9\'c7\'a9\'b0\'b4\'c5\'a5
+\f2  
+\f1 \'ba\'cd
+\f2  
+\f3 \uc0\u11015 \u65039 
+\f1 \'b0\'b4\'c5\'a5\'bb\'a5\'b3\'e2
+\f2 \
+        _searchBar.showsCancelButton = NO;                      //
+\f1 \'c8\'a1\'cf\'fb\'b0\'b4\'c5\'a5
+\f2 \
+        //_searchBar.showsSearchResultsButton = YES;            //
+\f3 \uc0\u11015 \u65039 
+\f1 \'bd\'e1\'b9\'fb\'b0\'b4\'c5\'a5
+\f2 \
+        _searchBar.showsScopeBar = YES;\
+        _searchBar.selectedScopeButtonIndex = 0;\
+        //_searchBar.tintColor = kThemeColor;\
+        _searchBar.barTintColor = kThemeBackgroundColor;         //
+\f1 \'cb\'d1\'cb\'f7\'bf\'f2\'b1\'b3\'be\'b0\'d6\'dc\'ce\'a7\'d1\'d5\'c9\'ab
+\f2 \
+        _searchBar.searchBarStyle = UISearchBarStyleMinimal;     //bar
+\f1 \'ce\'de\'b7\'d6\'b8\'ee\'cf\'df
+\f2 \
+        _searchBar.autocorrectionType = UITextAutocorrectionTypeNo;\
+        _searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;\
+        _searchBar.returnKeyType = UIReturnKeySearch;\
+        _searchBar.keyboardType = UIKeyboardTypeDefault;\
+    \}\
+    return _searchBar;\
+\}\
+\cf2 \
+\
+
+\fs24 4
+\f1 \'a1\'a2\'b4\'fa\'c0\'ed\'b7\'bd\'b7\'a8
+\fs18 \
+
+\f2 \cf4 //
+\f1 \'bf\'aa\'ca\'bc\'b1\'e0\'bc\'ad
+\f2 \
+-(void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar \{\
+    _searchBar.showsCancelButton = YES;\
+    \
+    // 
+\f1 \'d0\'de\'b8\'c4
+\f2 UISearchBar
+\f1 \'d3\'d2\'b2\'e0\'b5\'c4\'c8\'a1\'cf\'fb\'b0\'b4\'c5\'a5\'ce\'c4\'d7\'d6\'d1\'d5\'c9\'ab\'bc\'b0\'b1\'b3\'be\'b0\'cd\'bc\'c6\'ac
+\f2 \
+    for (UIView *subView in searchBar.subviews) \{\
+        \
+        for (id subsubView in subView.subviews) \{\
+            \
+            //
+\f1 \'c8\'a1\'cf\'fb\'b0\'b4\'c5\'a5
+\f2 \
+            if ([subsubView isKindOfClass:[UIButton class]]) \{\
+                UIButton *cancelButton = (UIButton*)subsubView;\
+                //[cancelButton setTitle:@"
+\f1 \'b7\'b5\'bb\'d8
+\f2 "forState:UIControlStateNormal];\
+                [cancelButton setTitleColor:kThemeColor forState:UIControlStateNormal];\
+                //[cancelButton setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];\
+            \}\
+            //
+\f1 \'b1\'b3\'be\'b0
+\f2 \
+            if ([subsubView isKindOfClass:[UIView class]]) \{\
+                UIView *bg = (UIView *)subsubView;\
+                bg.backgroundColor = [UIColor whiteColor];\
+                bg.layer.backgroundColor = [UIColor orangeColor].CGColor;\
+                bg.layer.borderColor = [UIColor redColor].CGColor;\
+                bg.layer.borderWidth = 1;\
+            \}\
+            //textField\
+            if ([subsubView isKindOfClass:[UITextField class]]) \{\
+                UITextField *textField = (UITextField *)subsubView;\
+                textField.backgroundColor = [UIColor blueColor];\
+                textField.layer.borderColor = [UIColor blueColor].CGColor;\
+                textField.layer.borderWidth = 1;\
+            \}\
+        \}\
+    \}\
+\}
+\fs22 \cf2 \
+
+\fs18 \cf4 -(void)searchBarTextDidEndEditing:(UISearchBar *)searchBar \{\
+    _searchBar.showsCancelButton = NO;\
+\}\
+//
+\f1 \'cb\'d1\'cb\'f7\'b0\'b4\'bc\'fc\'b5\'e3\'bb\'f7
+\f2 \
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar \{\
+    [self search:searchBar.text];\
+\}\
+-(void)search:(NSString *)searchText\{\
+    searchText = [searchText stringByRemovingPercentEncoding];\
+    searchText = [searchText stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet characterSetWithCharactersInString:searchText]];\
+    JIANGHAI_LOG(@"%@",searchText);\
+    //
+\f1 \'cb\'d1\'cb\'f7
+\f2 \
+    //[self handleData:searchText];\
+    //_searchResultViewCtrl.searchResultArray = [NSMutableArray array];\
+\}\
+\
+\cf2 \
+\
+\
+}

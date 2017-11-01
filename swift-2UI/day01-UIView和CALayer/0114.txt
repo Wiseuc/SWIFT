@@ -1,0 +1,339 @@
+
+=================================== 011文件夹：==================================
+
+一、LaunchScreen.storyboard文件：
+ 1.功能：设置应用程序的启动页面
+ 2.实战：
+--点击Launch Image Source（User Asset Catalog）按钮，弹出提示框
+--点击Migrate按钮，Launch Image Source（User Asset Catalog）按钮右边出现箭头
+--查看Asset.xcassets，发现Brand Assets
+--将启动图片放入Brand Assets
+--将Launch Screen File按钮置空即可
+3.如果没有设置启动页面，默认他的屏幕大小是4s大小
+4.LaunchScreen.storyboard的底层实现：
+--LaunchScreen把LaunchScreen.storyboard当中的内容，生成一张图片
+|
+|
+|
+二、AppIcon文件
+1.功能:设置应用程序的logo，图标
+|
+|
+|
+三、Info.plist文件
+1.功能：保存应用程序的配置信息，是一个字典
+2.预览：
+--BundleName：应用程序名称，也是最终压缩提交到appstore上的压缩包名称，
+如果工程名product是中文，也可以BundleName由$(PPRODUCT_NAME) 改为英文名即可
+--BundleIdentifier：应用程序唯一标识ID：com.qianfeng.SWP在第三方登陆和推送中有应用
+--Bundle Versions string，short：应用程序版本（本地）
+--Bundle Version：应用程序打包的版本（在appstore中每次打包上传，这个值都要加）
+|
+|
+|
+四、PCH文件
+1.功能：
+--存放共有的宏
+--导入公用的头文件
+--自定义NSLog
+2.原理：
+--在工程百编译过程当中，把PCH文件当中的所有内容导入到工程每个文件
+如果PCH文件过大，就会造成编译时间过长
+--如果PCH文件当中，导入了头文件（#import “UIView +frame“），则这个工程不能有c语言文件，原理同上
+   >解决办法：每个OC文件都会定义一个__OBJC__宏，只要判断有没有定义宏，就能看出是不是C语言文件，没有这个宏就不要导入PCH文件即可
+2.实战：
+--创建，点击other类，因为已经不推荐使用，选择PCH文件，（工程名 .pch）
+--在工程编译之前，告诉Xcode要编译PCH文件，点击Build Settings，搜索prefix
+在Apple LLVM7.0 - language目录下
+选择Precompile Prefix Header改为YES，
+选择Prefix Header填写PCH文件的路径"SWP/SWP.pch"即可，编译一下看是否成功
+--点击Xcode左上角应用程序图标，点击Edit Scheme...，点击Run，点击Info，
+点击Build Configuration将工程模式改为debug调试阶段，打包发布时改为release模式
+--JHLOG(...)中的 ...  代表传入参数，NSLog(__VA_ARGS__)中__VA_ARGS__代表获得的参数
+--------------------PCH代码-----------------
+#ifdef DEBUG
+#define JHLOG(...) NSLog(__VA_ARGS__)
+#else
+#define JHLOG(...)
+#endif
+------------------------------------------------
+|
+|
+|
+五、UIApplication（单例）
+1.功能：做应用程序级别的操作，比如应用之间跳转
+2
+3.实战：
+--通过shared方式获取单例
+--设置应用程序图标右上角的红色提醒数字NSinteger applicationIconBadgeNumber
+-----------------------------代码-------------------------------
+  //获取单例
+   UIApplication *app = [UIApplication sharedApplication];
+   //注册用户通知
+   UIUserNotificationSetting *notice = [UIUserNotificationSetting  settingsForTypes:UIUserNotificationTypeBadge  categories: nil];
+   [app registerUserNotificationSettings : notice];
+   //设置提醒值
+   app.applicationIconBadgeNumber = 10;
+--设置互联网指示器可见性BOOL networkActivityIndicctorVisible
+-----------------------------代码---------------------------------
+   UIApplication *app = [UIApplication sharedApplication];
+   app.networkActivityIndicatorVisible = YES;
+--状态栏管理，IOS7.0以后，系统提供2种状态栏管理方式，默认由viewcontroller管理
+  >通过UIViewController单个管理：
+样式：-(UIStatusBarStyle)preferredStatusBarStyle   
+可见性：-(BOOL)prefersStatusBarHidden
+  >通过UIApplication统一管理
+    要想由UIApplication管理，点击info.plist,  点击supported interface orientations，翻到最后，选择view controller-based status bar appearance.改为NO
+-----------------------------代码---------------------------------
+   UIApplication *app = [UIApplication sharedApplication];
+   app.statusBarhidden = NO;
+   app.statusbarStyle = UIStatusBarStylelightContent;
+--打开网页
+-----------------------------代码---------------------------------
+   UIApplication *app = [UIApplication sharedApplication];
+   [app  openURL: [NSURL URLWithString : @"tel://10086"]];
+-----------------模仿系统方式创建单例：--------------
+1.要求：程序一运行，就创建对象
+static Person *_instance;
+//load方法，在程序被加载到内存时就调用
++load {
+           _instance = [[ Person   alloc]  init ];
+}
+//2.创建的对象只有一个
++(instancetype)sharedPerson  {
+        return  _instrance;
+}
+3.只要调用alloc方式创建就奔溃
++(instancetype)alloc{
+         if(_instance) {
+                 //程序奔溃
+                 NSException  *exc  = [NSException  exceptionWithName:
+                                      @"NSInternalInconsistencyException" reason:@"There can only be one `Person` instance." userInfo:nil];    
+                  // 抛出异常
+                  [exc raise];
+         }
+         return  [super alloc];
+}
+|
+|
+|
+六、UIApplicationDelegate
+1.功能:
+2.原理
+--所有的移动操作系统都有一个致命的缺点，app很容易被打扰，比如打电话，发短信
+  会导致app进入后台甚至被终止 甚至数据没有保存就退出。。。而appdalegate有各种代理方法，来处理这些问题
+3.实战
+--执行main函数
+--执行UIApplicationMain( )，创建UIApplication对象并设置代理
+      return  UIApplicationMain(argc ,argv ,nil, NSStringFromClass( [AppDelegate  class] )  );
+     >第三个参数：设置应用程序对象的名称UIApplication或者是他的子类，如果是nil默认是UIApplication
+     >第四个参数：代理名称
+--开启一个事件循环，并且用一套代理方法来监听系统事件，来保证应用程序不退出
+--加载配置文件info.plist，找到Main storyboard file base name : Main确定主界面是哪个Main.storyboard
+--加载Main.storyboard
+--通知代理应用程序启动完毕
+|
+|
+|
+七、UIWindow
+1.功能
+--UIWindow是一个特殊的UIView
+--如果程序添加多个窗口，控制器会把状态栏隐藏掉
+--键盘是window，（UIWindow，UITextEffectsWindow, UIRemoteKeyboardWindow）
+--状态栏是window
+--可以设置UIWindow的层级
+2.原理
+--------------------加载Mian.storyboard相当于----------------------------
+--创建UIWindow
+--创建控制器
+--设置跟控制器（吧Mian.storyboard中有箭头指向的控制器，设置为窗口的根控制器）
+--显示（把跟控制器的view添加到UIWindow）
+-------------------------------代码方式---------------------------------------
+//window没有强引用，会被释放，在appdelegate.h页面系统自动创建了window对象
+//UIWindow *window = [[ UIWindow alloc ] initWithFrame: [UIScreen mainScreen].bounds]; 
+self.window =  [[ UIWindow alloc ] initWithFrame: [UIScreen mainScreen].bounds]; 
+UIViewController *vc  = [[ UIViewControllert  alloc]  init];
+self.window.rootViewController = vc;
+[self.window makeKeyAndVisible];//设置主窗口，并可见hidden = NO，将根控制器的view添加到window
+--如果程序添加多个窗口，控制器会把状态栏隐藏掉
+//解决办法：把状态栏给UIApplication管理就行了
+---------------------------代码------------------------------------
+@property(nonamatic,strong) UIWindow *window2;
+self.window2 = [[UIWindow alloc] initWithFrame:CGRectMake(100,100,100,100)];
+UIViewController *vc2 =  [[ UIViewController  alloc] init];
+self.window2.rootViewcontroller = vc2;
+[self.window2 makeKeyAndVisable];
+--可以设置UIWindow的层级
+----------------------------代码---------------------------------
+//UIWindowLevelNormal
+//UIWindowLevelStatusbar
+//UIWindowLevelAlert最前面，层级最高
+self.window2.windowLevvel = UIWindowLevelStatusbar;//状态栏级别
+3.实战
+--键盘和状态栏都是window，
+--------------------代码-------------------------
+@property (nonamatic, strong) UITextField *tf;
+self.tf = [[uiTextField alloc] init];
+[self.tf  becomeFirstResponser];//变成第一响应者
+[vc.view addSubviews:self.tf];//键盘想要显示，必须添加到view上去
+|
+|
+|
+|
+八、Main.storyboard加载控制器
+1.功能
+2.原理
+--控制器的获取方式不一样
+ >代码创建控制器
+ >代码获取storyboard箭头指向控制器
+ >代码获取带有唯一标识ID的控制器
+3.实战
+self.window =  [[ UIWindow alloc ] initWithFrame: [UIScreen mainScreen].bounds]; 
+//>第一种：代码创建
+//UIViewController *vc2 =  [[ UIViewController  alloc] init];
+//创建storyboard
+UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main", bundle: nil];
+//>第二种：加载storyboard箭头指向的控制器，（is Initial View Controller选上）
+//UIViewController *vc  = [storyboard  instantiateInitialViewController];
+//>第三种：或者加载指定的控制器(将storyboard中控制器的Identigier填入@"VC")
+UIViewController *vc  =[storyboard instantiateViewControllerWithIdentifier:@"VC"];
+self.window.rootViewController = vc;
+[self.window makeKeyAndVisible];
+|
+|
+|
+九、XIB加载控制器的View
+1.功能
+--加载静态页面常用，比如登陆界面
+2.原理
+--HJViewController
+--HJViewController.xib
+--HJView.xib
+3.实战
+--创建HJView.xib，拖进view
+--点击file·s owner  ，右侧第三项，Custom Class，填入Class：HJViewController（指定xib文件描述哪一个控制器）
+--鼠标右键点击file's owner，选择view选项拖线 到xib中的view控件，进行连线(指定xib中哪一个view用来描述)
+
+--通过xib加载
+--initWithNibName:如果加载指定的xib，灰去加载指定xib
+--initWithNibName:如果指定为nil：
+    >优先加载相同名称的xib：HJViewController.xib
+    >如果没有，则会加载去掉controller的xib：HJView.xib
+--最极端情况：》如果加载代码变成[[ UIViewControllert  alloc]  init];则在底层会自动调用 initWithNibName方法去加载
+                      》如果发现有对应XIB文件，则优先加载XIB方式创建view，
+                      》如果没有发现对应的XIB文件，则自动调用控制器loadview方法创建一个空白的view
+                      》如果自己重写了loadview方法，则不管之前有没有通过storyboard方式创建过，还是通过XIB方式创建过，都当作无效设置，被loadview方法覆盖
+---------------------代码------------------------------
+self.window =  [[ UIWindow alloc ] initWithFrame: [UIScreen mainScreen].bounds]; 
+UIViewController *vc  = [[ UIViewControllert  alloc]  initWithNibName:nil   bundle:nil];
+vc.backbroundColor = [uicolor redColor];
+self.window.rootViewController = vc;
+[self.window makeKeyAndVisible];
+|
+|
+|
+十、loadView（）方法
+1.功能
+--用来创建控制器的view，当控制器的view第一次使用时调用
+2.原理
+--判断当前控制器是不是从storyboard中加载的，如果是，则从storyboard加载控制器的view设置为当前控制器的view
+--否则判断控制器是不是从XIB中加载，如果是，则从XIB 加载控制器的view设置为当前控制器的view
+--否则创建一个空白的view
+--一旦重写loadView( )方法，就说明要自定义View，上面三种失效。
+3.实战
+-init();
+-loadview();
+-viewdidload();
+-viewwillappear();
+-viewdidappear();
+-viewwillDisappear();
+-viewdidDisappear();
+-viewdidload();
+
+-(void)loadview{
+    //UIView *view = [ [UIView  alloc] initWithFrame:[UIScreen  mainScreen].bounds];
+     //self.view = view;
+     //如果一个控件不能接受事件，那它的子控件也不能接收事件，可以打开用户交互userInteractionEnable = YES;
+     UIImageView *imageView =[ [UIImageView alloc] initWithImage：[UIimage imageName:@"hhh.png"]];
+      self.view = imageView; //控制器view是imageView了
+}
+-(void)viewdidload{
+         UIImageView *imageView =[ [UIImageView alloc] initWithImage：[UIimage imageName:@"hhh.png"]];
+         imageView.image = 
+         [self.view addSubView:imageViwe];
+
+         UIButton *button = [UIButton buttonWithType: UIButtonTypeContactAdd];
+          button.frame = CGRectmake(50,50,50,50);
+          [self.view addSubView: button];          
+}
+--------------这样写会造成死循环--------------------
+-(void)loadview{
+    UIView *view = [ [UIView  alloc] initWithFrame:self.view.bounds];//这样写会造成死循环
+     self.view = view;
+}
+-(UIView *)view{
+       if( _view == nil){ 
+                [self  loadview];//这样写会造成死循环
+        }
+}
+|
+|
+|
+十一、控制器的view懒加载
+1.功能
+2.原理
+3.实战
+---------------------------------代码-----------------------------------
+self.window =  [[ UIWindow alloc ] initWithFrame: [UIScreen mainScreen].bounds]; 
+UIViewController *vc  = [[ UIViewControllert  alloc]  initWithNibName:nil   bundle:nil];
+vc.view.backbroundColor = [uicolor greenColor];  //这里是绿色,因为懒加载方式创建view
+self.window.rootViewController = vc;
+// [self.window makeKeyAndVisible];相当于下面两步操作
+[self.window addSubviews: vc.view];//在这里进行懒加载，调用了控制器的loadview方法，如下11.1
+self.window.hidden = NO;
+------11.1----------
+-(void)loadview{
+    UIView *view = [ [UIView  alloc] initWithFrame: [UIScreen mainScreen].bounds];
+     self.view = view;
+}
+-(UIView *)view{
+       if( _view == nil){ 
+                [self  loadview]；
+                [self  viewdidload];//再进行
+        }
+       return _view;
+}
+-(void)viewdidload{
+      [super viewdidload];
+       self.view.backfround = [UIcolor  redColor];   //这里是红色
+}
+|
+|
+|
+十五、控制器view的颜色
+1.功能
+2.原理
+--在创建一个控制器一开始颜色是透明的原因是，控制器的view的颜色呗设置成clear，
+--只要透明度alpha是1，就可以接受用户事件
+3.实战
+-----------------------------代码----------------------------------
+self.window =  [[ UIWindow alloc ] initWithFrame: [UIScreen mainScreen].bounds]; 
+UIViewController *vc  = [[ UIViewControllert  alloc]  initWithNibName:nil   bundle:nil];
+vc.view.backbroundColor = [uicolor greenColor];  //一开始控制器view的颜色是clear
+//vc.view.alpha = 0;    //如果一个控件是透明的，那么他是不能接收用户事件的,事件被下面的控件接受，所以按钮变为可以点击了
+
+UIbutton *button = [UIButton buttonWithType: UIButtonTypeContactAdd];
+button.frame = CGRectmake(100,100,100,100);
+[self.window addSubviews:button]; //先加button放在后面
+
+self.window.rootViewController = vc;//在加view，挡在前面
+ [self.window makeKeyAndVisible];
+
+
+
+
+
+
+
+
+

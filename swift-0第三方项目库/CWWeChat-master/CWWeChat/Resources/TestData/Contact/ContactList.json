@@ -1,0 +1,90 @@
+ [
+  {
+  "userID" : "abbott",
+  "username" : "lv-qinghou",
+  "nikeName" : "李灵黛",
+  "avatarURL" : "http://image.cwcoder.com/agnes.jpg",
+  "remarkName" : "李灵黛",
+  },
+
+  {
+  "userID" : "abraham",
+  "username" : "tangtang",
+  "nikeName" : "文卿",
+  "avatarURL" : "http://image.cwcoder.com/ballard.jpg",
+  "remarkName" : "文卿",
+  },
+
+
+  {
+  "userID" : "admin",
+  "username" : "lian001",
+  "nikeName" : "露萍",
+  "avatarURL" : "http://image.cwcoder.com/candice.jpg",
+  "remarkName" : "露萍",
+  },
+
+  {
+  "userID" : "chenwei",
+  "username" : "",
+  "nikeName" : "陈威",
+  "avatarURL" : "http://image.cwcoder.com/chenwei.jpg",
+  "remarkName" : "柳兰歌",
+  },
+
+  {
+  "userID" : "baobei",
+  "username" : "furongMM",
+  "nikeName" : "秦水支",
+  "avatarURL" : "http://image.cwcoder.com/diana.jpg",
+  "remarkName" : "秦水支"
+  },
+
+  {
+  "userID" : "barry",
+  "username" : "yu",
+  "nikeName" : "掌柜的",
+  "avatarURL" : "http://image.cwcoder.com/hinds.jpg",
+  "remarkName" : "李念儿",
+  },
+
+  {
+  "userID" : "hinson",
+  "username" : "XB",
+  "nikeName" : "文彩依",
+  "avatarURL" : "http://image.cwcoder.com/hinson.jpg",
+  "remarkName" : "文彩依",
+  },
+
+   {
+  "userID" : "carter",
+  "username" : "XB",
+  "nikeName" : "婵诗",
+  "avatarURL" : "http://image.cwcoder.com/hodges.jpg",
+  "remarkName" : "婵诗",
+  },
+
+   {
+  "userID" : "jerry",
+  "username" : "XB",
+  "nikeName" : "丁玲珑",
+  "avatarURL" : "http://image.cwcoder.com/jerry.jpg",
+  "remarkName" : "丁玲珑",
+  },
+
+   {
+  "userID" : "tom",
+  "username" : "XB",
+  "nikeName" : "Tom",
+  "avatarURL" : "http://image.cwcoder.com/tom.jpg",
+  "remarkName" : "凌霜华",
+  },
+
+     {
+  "userID" : "trista",
+  "username" : "XB",
+  "nikeName" : "景茵梦",
+  "avatarURL" : "http://image.cwcoder.com/trista.jpg",
+  "remarkName" : "景茵梦",
+  },
+  ]

@@ -1,0 +1,913 @@
+{\rtf1\ansi\ansicpg936\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset134 PingFangSC-Regular;\f2\fnil\fcharset0 Menlo-Bold;
+\f3\fnil\fcharset0 AppleColorEmoji;}
+{\colortbl;\red255\green255\blue255;\red230\green230\blue230;\red0\green0\blue0;\red163\green21\blue21;
+\red128\green128\blue128;\red246\green246\blue246;}
+{\*\expandedcolortbl;;\csgray\c92143;\csgenericrgb\c0\c0\c0;\csgenericrgb\c63900\c8200\c8200;
+\csgray\c57415;\cssrgb\c97255\c97255\c97255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww17220\viewh15720\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+\
+1.
+\f1 \'a3\'a8\'b5\'da\'d2\'bb\'b4\'ce\'a3\'a9\'ca\'b9\'d3\'c3\'d3\'f2\'c3\'fb
+\f0 \'93auth-server\'94
+\f1 \'c1\'ac\'bd\'d3\'b7\'fe\'ce\'f1\'c6\'f7
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+[_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];\kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \
+\
+2.
+\f1 \'a3\'a8\'b5\'da\'d2\'bb\'b4\'ce\'a3\'a9\'c1\'ac\'bd\'d3\'b7\'fe\'ce\'f1\'c6\'f7\'d6\'ae\'ba\'f3\'a3\'ac\'c4\'da\'b2\'bf\'ca\'b5\'cf\'d6\'b7\'a2\'cb\'cd
+\f0 iq\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f2\b\fs18 \cf3 \cb2 \CocoaLigature0 \
+
+\f1 \'cb\'d1\'cb\'f7\'a3\'ba
+\f0\b0\fs22 \cf4 jabber:iq:auth
+\f1 \'a3\'ac\'cc\'ed\'bc\'d3username\'bd\'da\'b5\'e3
+\f2\b\fs18 \cf3 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\b0 \cf3 XMPPElement *username = [XMPPElement elementWithName:@"username" stringValue:self.myJID.user];\
+            [query addChild:username];
+\f2\b \
+\
+SEND: \
+<iq type="get" id="25C47B5B-50B3-4CA9-9F90-E6DF37E6DC51">\
+<query xmlns="jabber:iq:auth">\
+  <username>
+\f1 \'bd\'ad\'ba\'a3
+\f2 </username>\
+</query>\
+</iq>
+\f0\b0 \cf0 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f2\b \cf3 \CocoaLigature0 RECV: \
+<iq xmlns="jabber:client" type="error" id="25C47B5B-50B3-4CA9-9F90-E6DF37E6DC51">\
+  <query xmlns="jabber:iq:auth">\
+     <username>
+\f1 \'bd\'ad\'ba\'a3
+\f2 </username>\
+  </query>\
+  <error code="401">Unauthorized</error>\
+</iq>
+\f0\b0\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+3.
+\f1 \'a3\'a8\'b5\'da\'d2\'bb\'b4\'ce\'a3\'a9\'c1\'ac\'bd\'d3\'b3\'c9\'b9\'a6\'ba\'f3\'b7\'a2\'cb\'cd
+\f0 auth iq\
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf5 \cb2 \expnd0\expndtw0\kerning0
+SEND: \
+\
+<iq type="set">\
+<query xmlns="jabber:iq:access:auth">\
+<username>
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 </username>\
+<ClientVer>5.1.25</ClientVer>\
+<SystemVer>1
+\f2\b 0.3<
+\f0\b0 /SystemVer>\
+<Session_ID>07A89F4DC5834AE2A04E16B504BD01BE</Session_ID>\
+<Client_IP>0.0.0.0</Client_IP>\
+<server>192.168.1.200</server>\
+<digest>f875ff653a3a75d7cd8fcd651bc7aa5c</digest>\
+</query>\
+</iq>\
+\
+RECV: \
+\
+<iq xmlns="jabber:client" type="result">\
+<query xmlns="jabber:iq:access:auth">\
+<Message>\
+\
+<PID>10805</PID>\
+<AccountID>131785</AccountID>\
+<JID>
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server</JID>\
+<UserName>
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 </UserName>\
+<IsAdmin>0</IsAdmin>\
+<IMPwd>666666</IMPwd>\
+<AccountName>
+\f1 \'b2\'e2\'ca\'d4\'b0\'e6\'b1\'be
+\f0 (
+\f1 \'b7\'c7\'d5\'fd\'ca\'bd
+\f0 )</AccountName>\
+<Domain>duowin-server</Domain>\
+<AssistantURL/>\
+<Host>192.168.1.200</Host>\
+<FirstChanel>0</FirstChanel>\
+<VisableChanels>0</VisableChanels>\
+<Email>xiaofanyu@wiseuc.com</Email>\
+<Code_Type>1</Code_Type>\
+<Session_ID>07A89F4DC5834AE2A04E16B504BD01BE</Session_ID>\
+<PushOrgState>1</PushOrgState>\
+<ServerVer>2.1.3</ServerVer>\
+<HasAdvert>0</HasAdvert>\
+\
+</Message>\
+</query>\
+</iq>
+\fs24 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+4.
+\f1 \'b6\'cf\'bf\'aa\'b7\'fe\'ce\'f1\'c6\'f7\'a1\'a3\'a1\'a3\'a1\'a3\'a1\'a3
+\f0 \
+\
+\
+5.
+\f1 \expnd0\expndtw0\kerning0
+\'ca\'b9\'d3\'c3\'d5\'e6\'ca\'b5\'d3\'f2\'c3\'fb
+\f0 \'93duowin-server\'94
+\f1 \'b5\'da\'b6\'fe\'b4\'ce\'c1\'ac\'bd\'d3\'b7\'fe\'ce\'f1\'c6\'f7
+\f0 \kerning1\expnd0\expndtw0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+[_xmppStream connectWithTimeout:XMPPStreamTimeoutNone error:&error];\kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \
+\
+6.
+\f1 \'a3\'a8\'b5\'da\'b6\'fe\'b4\'ce\'a3\'a9\'c1\'ac\'bd\'d3\'b7\'fe\'ce\'f1\'c6\'f7\'d6\'ae\'ba\'f3\'bb\'f1\'c8\'a1\'b5\'bd
+\f0 Digest
+\f1 \'a3\'ac\'c4\'da\'b2\'bf\'ca\'b5\'cf\'d6\'b7\'a2\'cb\'cd
+\f0 iq\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f2\b\fs18 \cf5 \cb2 \CocoaLigature0 SEND: \
+<iq type="get" id="0429231F-EBE1-4B19-B51D-D0B192F8F074">\
+<query xmlns="jabber:iq:auth">\
+   <username>
+\f1 \'bd\'ad\'ba\'a3
+\f2 </username>\
+</query>\
+</iq>\
+\
+RECV: \
+<iq xmlns="jabber:client" type="result" id="0429231F-EBE1-4B19-B51D-D0B192F8F074">\
+<query xmlns="jabber:iq:auth">\
+   <username>
+\f1 \'bd\'ad\'ba\'a3
+\f2 </username>\
+   <digest/>\
+   <password/>\
+   <resource/>\
+</query>\
+</iq>
+\f0\b0 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf5 \cb2 \
+\
+
+\f1\fs18 \'d3\'c9\'d3\'daXMPPStream\'b5\'c4\'bb\'f1\'c8\'a1\'b5\'bd
+\f0 \cb2 Digest
+\f1 \cb2 \'b2\'bb\'bb\'e1\'d6\'b4\'d0\'d0
+\f0 \CocoaLigature0 didReceiveIQ
+\f1 \CocoaLigature1 \'b4\'fa\'c0\'ed\'b7\'bd\'b7\'a8
+\f0\fs24 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\fs18 \cf5 \cb2 \CocoaLigature0 XMPPStream
+\f1 \cb2 \'a3\'ba
+\f0 \cb2 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f1 \cf5 \cb2 \'cb\'d1\'cb\'f7
+\f0\fs22 \cb2 RECV:
+\fs18 \
+- (void)xmppParser:(XMPPParser *)sender didReadElement:(NSXMLElement *)element\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf5 \cb2 \CocoaLigature1 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\fs18 \cf5 \cb2 \CocoaLigature0     // FIXME:Digest\
+    //
+\f1 \cb2 \'bb\'f1\'c8\'a1
+\f0 \cb2 Digest
+\f1 \cb2 \'a3\'ac\'c4\'da\'b2\'bf\'ca\'b5\'cf\'d6\'b7\'a2\'cb\'cd
+\f0 \cb2 send\
+    NSString *type =  [[element attributeStringValueForName:@"type"] lowercaseString];\
+\
+    if ([type isEqualToString:@"result"]) \{\
+        \
+        NSXMLElement *query = [element elementForName:@"query" xmlns:@"jabber:iq:auth"];\
+        \
+        if (query) \{\
+            NSXMLElement *digest = [query elementForName:@"digest"];\
+            [multicastDelegate xmppStream:self didReceiveIQ:[XMPPIQ iqFromElement:element]];\
+\
+//            if (digest) \{\
+//                [multicastDelegate xmppStream:self didReceiveIQ:[XMPPIQ iqFromElement:element]];\
+//            \}else\{\
+//                [multicastDelegate xmppStream:self didReceiveIQ:[XMPPIQ iqFromElement:element]];\
+//            \}\
+        \}\
+    \}\
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f1 \cf5 \cb2 \'d4\'da
+\f0 \cb2 XMPPStream
+\f1 \cb2 .h\'d6\'d0\'cc\'ed\'bc\'d33\'b8\'f6\'ca\'f4\'d0\'d4
+\f0 \cb2 \
+@property (readwrite, assign) BOOL isHaveDigest;\
+@property (readwrite, strong) NSString *loginname;\
+@property (readwrite, strong) NSString *password;
+\fs24 \cb2 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \cb1 \
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+7.
+\f1 \'c1\'ac\'bd\'d3\'b3\'c9\'b9\'a6\'ba\'f3\'d1\'e9\'d6\'a4\'c3\'dc\'c2\'eb
+\f0 \
+\pard\pardeftab720\partightenfactor0
+
+\fs26 \cf0 \cb2 \expnd0\expndtw0\kerning0
+[_xmppStream authenticateWithPassword:_userModel.password error:&error];
+\fs24 \kerning1\expnd0\expndtw0 \
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f2\b\fs18 \cf3 \CocoaLigature0 SEND: \
+\
+<iq type="set">\
+<query xmlns="jabber:iq:auth">\
+   <username>
+\f1 \'bd\'ad\'ba\'a3
+\f2 </username>\
+   <resource>IphoneIM</resource>\
+   <ClientVer>5.5.1</ClientVer>\
+   <digest>cbf16a336fe68b608a18d6d80f082b8d84965969</digest>\
+</query>\
+</iq>\
+\
+
+\f1 \'d0\'de\'b8\'c4\'ce\'aa\'a3\'ba
+\f2 \
+<iq type="set">\
+<query xmlns="jabber:iq:auth">\
+   <loginname>
+\f1 \'bd\'ad\'ba\'a3
+\f2 </loginname>\
+   <username>
+\f1 \'bd\'ad\'ba\'a3
+\f2 </username>\
+   <resource>IphoneIM</resource>\
+   <password>777777</password>\
+</query>\
+</iq>\
+\
+RECV: \
+<iq xmlns="jabber:client" type="result" id="pthsock_client_auth_ID"/>
+\f0\b0\fs24 \cf0 \cb2 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f1\fs18 \cf3 \'d4\'da
+\f0 XMPPStream.m
+\f1 \'d6\'d0\'a3\'ac\'b0\'fc\'ba\'ac\'c1\'cb\'cb\'f9\'d3\'d0\'b5\'c4\'c3\'dc\'c2\'eb\'d1\'e9\'d6\'a4\'b7\'bd\'ca\'bd
+\f0 \CocoaLigature0 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf3 \cb2 - (BOOL)authenticateWithPassword:(NSString *)inPassword error:(NSError **)errPtr \{\
+		id <XMPPSASLAuthentication> someAuth = nil;\
+        \
+		if ([self supportsSCRAMSHA1Authentication])\{\
+			someAuth = [[XMPPSCRAMSHA1Authentication alloc] initWithStream:self password:password];\
+			result = [self authenticate:someAuth error:&err];\
+		\}\
+		else if ([self supportsDigestMD5Authentication])\{\
+			someAuth = [[XMPPDigestMD5Authentication alloc] initWithStream:self password:password];\
+			result = [self authenticate:someAuth error:&err];\
+		\}\
+		else if ([self supportsPlainAuthentication])\{\
+			someAuth = [[XMPPPlainAuthentication alloc] initWithStream:self password:password];\
+			result = [self authenticate:someAuth error:&err];\
+		\}\
+		else if ([self supportsDeprecatedPlainAuthentication])\{\
+			someAuth = [[XMPPDeprecatedDigestAuthentication alloc] initWithStream:self password:password];\
+			result = [self authenticate:someAuth error:&err];\
+		\} \
+          
+\f1 \cb2 \'a3\'af \\\
+                     |\
+         \'d5\'e22\'b8\'f6\'bd\'bb\'bb\'bb\'c1\'cb\'ce\'bb\'d6\'c3\'a3\'ac\'d2\'d4\'b1\'e3\'d3\'da\'cf\'c8\'d6\'b4\'d0\'d0\'c9\'cf\'c3\'e6\'d5\'e2\'b8\'f6\
+                     |\
+                    \\ /
+\f0 \cb2 \
+		else if ([self supportsDeprecatedDigestAuthentication])\{\
+			someAuth = [[XMPPDeprecatedDigestAuthentication alloc] initWithStream:self password:password]; \
+			result = [self authenticate:someAuth error:&err];\
+		\}\
+          else\{\
+			NSString *errMsg = @"No suitable authentication method found";\
+			NSDictionary *info = @\{NSLocalizedDescriptionKey : errMsg\};\
+			err = [NSError errorWithDomain:XMPPStreamErrorDomain code:XMPPStreamUnsupportedAction userInfo:info];\
+			result = NO;\
+		\}\
+	\}\};\
+\}\cb2 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \
+\
+\
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f1\fs18 \cf3 \CocoaLigature0 \'d4\'da
+\f0 \cb2 XMPPDeprecatedPlainAuthentication
+\f1 \cb2 .m\'ce\'c4\'bc\'fe\'d6\'d0\'d0\'de\'b8\'c4\'ce\'aa
+\f0 \CocoaLigature1 \
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+\cf3 \cb2 \CocoaLigature0 // FIXME:Digest\
+NSXMLElement *query = [NSXMLElement elementWithName:@"query" xmlns:@"jabber:iq:auth"];\
+if (!xmppStream.isHaveDigest) \{\
+    [query addChild:[NSXMLElement elementWithName:@"loginname" stringValue:xmppStream.loginname]];\
+    [query addChild:[NSXMLElement elementWithName:@"password" stringValue:xmppStream.password]];\
+\}\
+[query addChild:[NSXMLElement elementWithName:@"username" stringValue:username]];\
+[query addChild:[NSXMLElement elementWithName:@"resource" stringValue:resource]];\
+//[query addChild:[NSXMLElement elementWithName:@"password" stringValue:password]];
+\fs24 \cf0 \cb1 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+\
+\
+\
+
+\f1 \'b5\'c7\'c2\'bc\'cd\'ea\'b3\'c9
+\f3 \uc0\u9989 
+\f0 \
+\
+\
+\
+\
+8.
+\f1 \'c9\'cf\'cf\'df
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+SEND: \
+\
+<presence type="available" from="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM">\
+<show/>\
+<status>
+\f1 \'d4\'da\'cf\'df
+\f0 </status>\
+<priority>0</priority>\
+</presence>
+\fs24 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+9.
+\f1 \'cf\'c2\'cf\'df
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+SEND: \
+\
+<presence type="available" from="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM">\
+<show/>\
+<status>
+\f1 \'c0\'eb\'cf\'df
+\f0 </status>\
+<priority>0</priority>\
+</presence>
+\fs24 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+10.
+\f1 \'bb\'f1\'c8\'a1\'b7\'fe\'ce\'f1\'c6\'f7\'ca\'b1\'bc\'e4
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+SEND: \
+\
+<iq type="get" to="duowin-server" id="B1BE77CB-B7C4-468B-9734-42F55170DFF1">\
+<query xmlns="jabber:iq:time"/>\
+</iq>\
+\
+RECV: \
+\
+<iq xmlns="jabber:client" type="result" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM" id="B1BE77CB-B7C4-468B-9734-42F55170DFF1" from="duowin-server">\
+<query xmlns="jabber:iq:time">\
+<utc>20170829T10:26:10</utc>\
+<display>Tue Aug 29 10:26:10 2017</display>\
+<tz>CST</tz>\
+</query>\
+</iq>\kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \
+\
+11.
+\f1 \'b7\'a2\'cb\'cd
+\f0 iq
+\f1 \'bb\'f1\'c8\'a1\'b8\'f6\'c8\'cb\'d0\'c5\'cf\'a2\'a3\'ac\'c4\'da\'b2\'bf\'ca\'b5\'cf\'d6\'b7\'a2\'cb\'cd
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+SEND: \
+<iq type="get" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server" id="rstrone"><vCard xmlns="vcard-temp" ver="0"/></iq>\
+\
+RECV:\
+<iq xmlns="jabber:client" type="result" to="&#x8427;&#x51E1;&#x5B87;@duowin-server/IphoneIM" id="rstrone" from=\'93
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM">\
+<vCard xmlns="vcard-temp" ver="187">\
+<LOGINNAME>
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 </LOGINNAME>\
+<FN>
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 </FN>\
+<NICKNAME>
+\f1 \'b9\'fe\'b9\'fe
+\f0 </NICKNAME>\
+<EMAIL>xiaofanyu@wiseuc.com</EMAIL>\
+<URL> </URL>\
+<BDAY>1988-09-28</BDAY>\
+<TITLE>iOS
+\f1 \'bf\'aa\'b7\'a2
+\f0 </TITLE>\
+<GENDER>
+\f1 \'c4\'d0
+\f0 </GENDER>\
+<WORKURL>http://www.wiseuc.com</WORKURL>\
+<ORG>\
+  <ORGNAME>
+\f1 \'b2\'e2\'ca\'d4\'b0\'e6\'b1\'be
+\f0 (
+\f1 \'b7\'c7\'d5\'fd\'ca\'bd
+\f0 )</ORGNAME>\
+  <ORGUNIT>
+\f1 \'d1\'d0\'b7\'a2\'b2\'bf
+\f0 </ORGUNIT>\
+  <DESC> </DESC>\
+</ORG>\
+<MOBILEEXT>0</MOBILEEXT>\
+<ADR>\
+  <HOME/>\
+  <STREET> </STREET><EXTADR> \
+  </EXTADR><LOCALITY> \
+  </LOCALITY><REGION> \
+  </REGION><COUNTRY> \
+  </COUNTRY>\
+  </ADR><ADR>\
+  <WORK/>\
+  <STREET>
+\f1 \'c4\'cf\'c9\'bd\'c7\'f8\'bf\'c6\'bc\'bc\'d4\'b0\'b1\'b1\'c7\'f8\'c7\'e5\'bb\'aa\'d0\'c5\'cf\'a2\'b8\'db\'d1\'d0\'b7\'a2\'c2\'a5
+\f0 B
+\f1 \'d7\'f9\'d2\'bb\'b2\'e3
+\f0 C
+\f1 \'c7\'f8
+\f0 </STREET>\
+  <LOCALITY>
+\f1 \'c9\'ee\'db\'da\'ca\'d0
+\f0 </LOCALITY>\
+  <REGION>
+\f1 \'b9\'e3\'b6\'ab\'ca\'a1
+\f0 </REGION>\
+</ADR>\
+<TEL><WORK/><VOICE/><NUMBER>908</NUMBER></TEL>\
+<TEL><WORK/><CELL/><NUMBER>18617354209</NUMBER></TEL>\
+<PHOTOHASH>951e3a16253d04e8521f384043082d227569f5a8</PHOTOHASH>\
+</vCard>\
+</iq>\kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \
+\
+12.
+\f1 \'bb\'f1\'c8\'a1\'ba\'c3\'d3\'d1\'c1\'d0\'b1\'ed\'a3\'ac\'c4\'da\'b2\'bf\'ca\'b5\'cf\'d6\'d7\'d4\'b6\'af\'b7\'a2\'cb\'cd
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+SEND: \
+<iq type="get" id="rosters"><query xmlns="jabber:iq:roster"/></iq>\
+\
+RECV: \
+<iq xmlns="jabber:client" type="result" id="rosters" from="&#x8427;&#x51E1;&#x5B87;@duowin-server/IphoneIM">\
+<query xmlns="jabber:iq:roster" ver="2955">\
+\
+<item jid="&#x6D4B;&#x8BD5;1@duowin-server" name="&#x6D4B;&#x8BD5;2" subscription="both" vcardver="26"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="&#x674E;&#x5F66;&#x5B8F;@duowin-server" name="&#x674E;&#x5F66;&#x5B8F;" subscription="both" vcardver="8"><group>
+\f1 \'ce\'d2\'b5\'c4\'b2\'bf\'c3\'c5
+\f0 </group></item>\
+<item jid="&#x5218;&#x816E;&#x5B9D;@duowin-server" name="&#x5218;&#x816E;&#x5B9D;" subscription="to" vcardver="87"><group>
+\f1 \'ce\'d2\'b5\'c4\'b2\'bf\'c3\'c5
+\f0 </group></item>\
+<item jid="&#x5468;&#x9E3F;&#x4F1F;@duowin-server" name="&#x5468;&#x9E3F;&#x4F1F;" subscription="none" ask="subscribe" vcardver="17"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="&#x5434;&#x6797;&#x5CF0;@duowin-server" name="&#x5434;&#x6797;&#x5CF0;" subscription="both" vcardver="44"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="test010@duowin-server" name="&#x6D4B;&#x8BD5;0101" subscription="to" vcardver="57"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="&#x8D75;&#x7FCC;&#x6E0A;@duowin-server" name="&#x8D75;&#x7FCC;&#x6E0A;" subscription="both" vcardver="36"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="test003@duowin-server" name="test003" subscription="both" vcardver="19"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="&#x9EC4;&#x6500;@duowin-server" name="&#x9EC4;&#x6500;" subscription="both" vcardver="123"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="&#x6D4B;&#x8BD5;3@duowin-server" name="&#x6D4B;&#x8BD5;3" subscription="from" ask="subscribe" vcardver="2"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="&#x5C39;&#x6EE1;&#x827A;@duowin-server" name="&#x5C39;&#x6EE1;&#x827A;" subscription="from" ask="subscribe" vcardver="9"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+<item jid="&#x6C5F;&#x6D77;@duowin-server" name="&#x6C5F;&#x6D77;" subscription="both" vcardver="128"><group>
+\f1 \'ce\'d2\'b5\'c4\'cd\'ac\'ca\'c2
+\f0 </group></item>\
+\
+</query>\
+</iq>\kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \
+\
+13.
+\f1 \'bb\'f1\'c8\'a1\'c8\'ba\'d7\'e9\'c1\'d0\'b1\'ed\'a3\'ac\'c4\'da\'b2\'bf\'d7\'d4\'b6\'af\'ca\'b5\'cf\'d6
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+- conferencetype (0.
+\f1 \'cc\'d6\'c2\'db\'d7\'e9
+\f0   1.
+\f1 \'c8\'ba\'d7\'e9
+\f0 )\
+\
+SEND: \
+<iq type="get" to="conference.duowin-server/IphoneIM" id="groups" var="self">\
+<query xmlns="jabber:iq:browse" ver=""/>\
+</iq>\
+\
+\
+\
+<iq xmlns="jabber:client" type="result" to="&#x6C5F;&#x6D77;@duowin-server/IphoneIM" id="groups" var="self" from="conference.duowin-server/IphoneIM">\
+\
+<item xmlns="jabber:iq:browse" category="conference" type="public" jid="conference" name="Public Chatrooms" totalnum="13"><ns>http://jabber.org/protocol/muc</ns><ns>http://jabber.org/protocol/disco</ns><ns>jabber:iq:browse</ns><ns>jabber:iq:register</ns><ns>jabber:iq:version</ns><ns>jabber:iq:time</ns><ns>jabber:iq:last</ns><ns>http://jabber.org/protocol/muc#vcard</ns>\
+<item category="conference" jid="d3e01480a5e24ae182d883ec29329216@conference.duowin-server" name="&#x5927;&#x7897;&#x83DC;-&#x805A;&#x9910;-20170519" password="0" introduction="" subject="&#x805A;&#x9910;" owner="&#x5218;&#x816E;&#x5B9D;@duowin-server" type="public" conferencetype="1"></item>\
+<item category="conference" jid="9671263e8b454ca1860d4840f936abd3@conference.duowin-server" name="5.1.100&#x6C47;&#x8BAF;&#x6700;&#x7EC8;&#x7248;" password="0" introduction="" subject="5.1&#x6C47;&#x8BAF;&#x7A33;&#x5B9A;&#x6700;&#x7EC8;&#x7248;" owner="&#x9B4F;&#x745E;@duowin-server" type="public" conferencetype="1"><admin>
+\f1 \'c1\'f5\'c3\'f7
+\f0 @duowin-server</admin></item>\
+<item category="conference" jid="df3b43d95db24fee939aa837495fa929@conference.duowin-server" name="&#x4E00;&#x70B9;&#x901A;" password="0" introduction="" subject="&#x4E00;&#x70B9;&#x901A;&#x9879;&#x76EE;" owner="&#x738B;&#x521A;1@duowin-server" type="public" conferencetype="1"></item>\
+<item category="conference" jid="2d90dbdf82634b52b2991437db7506d9@conference.duowin-server" name="&#x52B1;&#x62D3;&#x5927;&#x5BB6;&#x5EAD;" password="0" introduction="" subject="&#x52B1;&#x62D3;&#x5168;&#x4F53;&#x5458;&#x5DE5;" owner="&#x5E38;&#x79C0;&#x73CD;@duowin-server" type="public" conferencetype="1"><admin>test@duowin-server</admin><admin>
+\f1 \'ce\'d7\'cf\'e3\'c6\'bc
+\f0 @duowin-server</admin></item>\
+<item category="conference" jid="84015a2cf9124f2f94a175b206623c80@conference.duowin-server" name="&#x4E13;&#x4E1A;&#x6D4B;&#x8BD5;" password="0" introduction="" subject="&#x4E13;&#x4E1A;&#x6D4B;&#x8BD5;" owner="&#x5E38;&#x79C0;&#x73CD;@duowin-server" type="public" conferencetype="1"></item>\
+<item category="conference" jid="2b9ed81e96cf4b9aa3515511409c6ad7@conference.duowin-server" name="&#x7814;&#x53D1;&#x6280;&#x672F;&#x90E8;" password="0" introduction="...." subject="&#x6280;&#x672F;&#x90E8;" owner="&#x738B;&#x521A;1@duowin-server" type="public" conferencetype="1"><admin>
+\f1 \'c2\'b3\'d0\'c7
+\f0 @duowin-server</admin><admin>
+\f1 \'c1\'f5\'c8\'f9\'b1\'a6
+\f0 @duowin-server</admin></item>\
+<item category="conference" jid="aaf14ac03b6c42f0b71929eceaf4acd0@conference.duowin-server" name="&#x8003;&#x52E4;" password="0" introduction="&#x5173;&#x4E8E;&#x8003;&#x52E4;&#xFF0C;&#x5173;&#x4E8E;&#x76D1;&#x7763;&#xFF0C;&#x5173;&#x4E8E;&#x6253;&#x5361;&#xFF0C;&#x5173;&#x4E8E;&#x5916;&#x51FA;&#xFF0C;&#x5173;&#x4E8E;&#x767B;&#x8BB0;&#xFF0C;&#x5173;&#x4E8E;&#x8865;&#x5355;&#x3002;&#x3002;&#x3002; " subject="&#x81EA;&#x89C9;&#x6253;&#x5361;" owner="&#x5E38;&#x79C0;&#x73CD;@duowin-server" type="public" conferencetype="1"></item>\
+<item category="conference" jid="d4cc119d9fc14b61b90e48e928778482@conference.duowin-server" name="&#x79FB;&#x52A8;&#x7AEF;&#x5F00;&#x53D1;&#x7EC4;" password="0" introduction="&#x628A;&#x4EA7;&#x54C1;&#x5F53;&#x4F5C;&#x81EA;&#x5DF1;&#x7684;&#x5B69;&#x5B50;" subject="&#x96C6;&#x601D;&#x5E7F;&#x76CA;" owner="&#x5218;&#x816E;&#x5B9D;@duowin-server" type="public" conferencetype="1"></item>\
+<item category="conference" jid="836bb572c8034411b98b89e941c8b9e4@conference.duowin-server" name="discussion" password="0" introduction="" subject="discussion" owner="&#x5218;&#x660E;@duowin-server" type="public" conferencetype="0"></item>\
+<item category="conference" jid="24c2a6332c5149ccb36c31486750d6dd@conference.duowin-server" name="Android App New Feature Develo" password="0" introduction="" subject="Android App New Feature Develo" owner="&#x5218;&#x660E;@duowin-server" type="public" conferencetype="1"></item>\
+<item category="conference" jid="c44de97baecd4993952fc7e03373bf15@conference.duowin-server" name="&#x4E2D;&#x56FD;&#x79FB;&#x52A8;&#x5728;&#x7EBF;&#x5E94;&#x6807;" password="0" introduction="&#x4E2D;&#x56FD;&#x79FB;&#x52A8;&#x5728;&#x7EBF;&#x5E94;&#x6807;" subject="&#x4E2D;&#x56FD;&#x79FB;&#x52A8;&#x5728;&#x7EBF;&#x5E94;&#x6807;" owner="&#x9B4F;&#x745E;@duowin-server" type="public" conferencetype="1"></item>\
+<item category="conference" jid="c4954404a0f44b559b421bfdc4b19569@conference.duowin-server" name="&#x6C47;&#x8BAF;5.2&#x529F;&#x80FD;&#x53D1;&#x5E03;" password="0" introduction="&#x6C47;&#x8BAF;5.2&#x529F;&#x80FD;&#x53D1;&#x5E03;" subject="&#x6C47;&#x8BAF;5.2&#x529F;&#x80FD;&#x53D1;&#x5E03;" owner="&#x9B4F;&#x745E;@duowin-server" type="public" conferencetype="1"><admin>
+\f1 \'c1\'f5\'c3\'f7
+\f0 @duowin-server</admin><admin>
+\f1 \'c2\'b3\'d0\'c7
+\f0 @duowin-server</admin><admin>
+\f1 \'c1\'f5\'c8\'f9\'b1\'a6
+\f0 @duowin-server</admin></item>\
+<item category="conference" jid="419cd494a03d4d0898768eb14c9df614@conference.duowin-server" name="&#x6587;&#x4EF6;&#x53D1;&#x9001;test" password="0" introduction="&#x6587;&#x4EF6;&#x53D1;&#x9001;test" subject="&#x6587;&#x4EF6;&#x53D1;&#x9001;test" owner="&#x5218;&#x6770;@duowin-server" type="public" conferencetype="1"></item>\
+\
+</item>\
+</iq>\kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \
+\
+14.
+\f1 \'bb\'f1\'c8\'a1\'cd\'b7\'cf\'f1\'a3\'ac\'c4\'da\'b2\'bf\'ca\'b5\'cf\'d6\'d7\'d4\'b6\'af\'b7\'a2\'cb\'cd
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+RECV: \
+\
+//
+\f1 \'cd\'f8\'c2\'e7\'cd\'b7\'cf\'f1
+\f0 \
+<iq xmlns="jabber:client" type="result" to="&#x8427;&#x51E1;&#x5B87;@duowin-server/IphoneIM" id="getPhotoHash" from="&#x8427;&#x51E1;&#x5B87;@duowin-server/IphoneIM">\
+<vCard xmlns="vcard-temp" ver="0">\
+<PHOTO>\
+<type>image/jpeg</type>\
+<PHOTOHASH>951e3a16253d04e8521f384043082d227569f5a8</PHOTOHASH>\
+</PHOTO>\
+</vCard>\
+</iq>\
+\
+//
+\f1 \'b1\'be\'b5\'d8\'cd\'b7\'cf\'f1
+\f0 \
+<iq xmlns="jabber:client" type="result" to="&#x6C5F;&#x6D77;@duowin-server/IphoneIM" id="getPhotoHash" from="&#x6C5F;&#x6D77;@duowin-server/IphoneIM">\
+<vCard xmlns="vcard-temp" ver="0">\
+<PHOTO>\
+<type>image/png</type>\
+<PHOTOHASH>11</PHOTOHASH>\
+</PHOTO>\
+</vCard>\
+</iq>\kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\fs24 \cf0 \cb1 \
+\
+15.
+\f1 \'bb\'f1\'c8\'a1\'b8\'f6\'c8\'cb\'d7\'ca\'c1\'cf
+\f0 vCard
+\f1 \'a3\'ac\'c4\'da\'b2\'bf\'d7\'d4\'b6\'af\'b7\'a2\'cb\'cd
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+SEND: \
+\
+<iq type="get" to="&#x8427;&#x51E1;&#x5B87;@duowin-server" id="rstrone">\
+<vCard xmlns="vcard-temp" ver="0"/>\
+</iq>\
+\
+RECV: \
+\
+<iq xmlns="jabber:client" type="result" to="&#x6C5F;&#x6D77;@duowin-server/IphoneIM" id="rstrone" from="&#x6C5F;&#x6D77;@duowin-server/IphoneIM">\
+<vCard xmlns="vcard-temp" ver="128">\
+<LOGINNAME>
+\f1 \'bd\'ad\'ba\'a3
+\f0 </LOGINNAME>\
+<FN>
+\f1 \'bd\'ad\'ba\'a3
+\f0 </FN>\
+<URL> </URL>\
+<BDAY>1993-07-02</BDAY>\
+<TITLE>iOS 
+\f1 \'bf\'aa\'b7\'a2\'b9\'a4\'b3\'cc\'ca\'a6
+\f0 </TITLE>\
+<GENDER>
+\f1 \'c4\'d0
+\f0 </GENDER>\
+<WORKURL>http://www.wiseuc.com</WORKURL>\
+<ORG>\
+  <ORGNAME>
+\f1 \'b2\'e2\'ca\'d4\'b0\'e6\'b1\'be
+\f0 (
+\f1 \'b7\'c7\'d5\'fd\'ca\'bd
+\f0 )</ORGNAME>\
+  <ORGUNIT>
+\f1 \'d1\'d0\'b7\'a2\'b2\'bf
+\f0 </ORGUNIT>\
+  <DESC> </DESC>\
+  <PSIGN>
+\f1 \'d3\'ca\'cf\'e4\'a3\'ba
+\f0   jianghai@wiseuc.com</PSIGN>\
+</ORG>\
+<MOBILEEXT>0</MOBILEEXT>\
+<ADR>\
+  <HOME/>\
+  <STREET> </STREET>\
+  <EXTADR> </EXTADR>\
+  <LOCALITY> </LOCALITY>\
+  <REGION> </REGION>\
+  <COUNTRY> </COUNTRY>\
+</ADR>\
+<ADR>\
+  <WORK/>\
+  <STREET>
+\f1 \'c4\'cf\'c9\'bd\'c7\'f8\'bf\'c6\'bc\'bc\'d4\'b0\'b1\'b1\'c7\'f8\'c7\'e5\'bb\'aa\'d0\'c5\'cf\'a2\'b8\'db\'d1\'d0\'b7\'a2\'c2\'a5
+\f0 B
+\f1 \'d7\'f9\'d2\'bb\'b2\'e3
+\f0 C
+\f1 \'c7\'f8
+\f0 </STREET>\
+  <LOCALITY>
+\f1 \'c9\'ee\'db\'da\'ca\'d0
+\f0 </LOCALITY>\
+  <REGION>
+\f1 \'b9\'e3\'b6\'ab\'ca\'a1
+\f0 </REGION>\
+  <PCODE>jianghai@wiseuc.com</PCODE>\
+</ADR>\
+<TEL><WORK/><CELL/><NUMBER>18823780407</NUMBER></TEL>\
+<PHOTOHASH>11</PHOTOHASH>\
+</vCard>\
+</iq>
+\fs24 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\
+16.
+\f1 \'bb\'f1\'c8\'a1\'ba\'c3\'d3\'d1\'d4\'da\'cf\'df\'d7\'b4\'cc\'ac
+\f0 Presence
+\f1 \'a3\'ac\'c4\'da\'b2\'bf\'ca\'b5\'cf\'d6\'d7\'d4\'b6\'af\'b7\'a2\'cb\'cd
+\f0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\fs18 \cf0 \cb2 \expnd0\expndtw0\kerning0
+RECV: \
+<presence xmlns="jabber:client" type="state">\
+<list>\
+\
+<item type="unavailable" show="xa" from="cici@duowin-server/IphoneIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><status>
+\f1 \'c0\'eb\'cf\'df
+\f0 </status><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+<item from="
+\f1 \'cd\'f5\'cd\'fe
+\f0 @duowin-server/WinduoIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><status>
+\f1 \'d4\'da\'cf\'df
+\f0 </status><show/><priority>0</priority><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+<item from="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><show/><status>
+\f1 \'d4\'da\'cf\'df
+\f0 </status><priority>0</priority><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+<item from="
+\f1 \'b3\'c2\'ce\'c4\'ba\'bc
+\f0 @duowin-server/WinduoIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><status>
+\f1 \'c0\'eb\'bf\'aa
+\f0 </status><show>away</show><priority>0</priority><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+<item from="
+\f1 \'c8\'c4\'b7\'bc\'e7\'e2
+\f0 @duowin-server/WinduoIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><status>
+\f1 \'c0\'eb\'bf\'aa
+\f0 </status><show>away</show><priority>0</priority><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+<item from="
+\f1 \'ce\'ba\'c8\'f0
+\f0 @duowin-server/WinduoIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><status>
+\f1 \'d4\'da\'cf\'df
+\f0 </status><show/><priority>0</priority><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+<item type="unavailable" from="
+\f1 \'c2\'b3\'d0\'c7
+\f0 @duowin-server/WinduoIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+<item from="
+\f1 \'b9\'a8\'ba\'ec\'cd\'fe
+\f0 @duowin-server/WinduoIM" to="
+\f1 \'cf\'f4\'b7\'b2\'d3\'ee
+\f0 @duowin-server/IphoneIM"><status>
+\f1 \'d4\'da\'cf\'df
+\f0 </status><show/><priority>0</priority><x xmlns="jabber:x:delay" stamp="20170801T11:35:12"/></item>\
+\
+</list>\
+</presence>
+\fs24 \cb1 \kerning1\expnd0\expndtw0 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 \
+\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf0 \expnd0\expndtw0\kerning0
+\'c4\'d1\'b5\'e3
+\f2 \
+1.
+\f1 \'d7\'e9\'d6\'af\'bc\'dc\'b9\'b9\'d6\'d0\'b5\'c4\'ba\'c3\'d3\'d1\'d7\'b4\'cc\'ac\'ca\'c7\'d4\'f5\'d1\'f9\'bb\'f1\'c8\'a1\'b5\'c4
+\f2 \
+\pard\pardeftab720\partightenfactor0
+
+\f1\b0 \cf0 \cb6 \'b4\'f0\'b0\'b8\'a3\'ba
+\f0 Presence\
+\
+1.
+\f1 \'d4\'da\'b5\'c7\'c2\'bc\'b3\'c9\'b9\'a6\'d6\'ae\'ba\'f3\'a3\'ac\'bb\'e1\'ca\'d7\'cf\'c8\'cd\'a8\'b9\'fd
+\f0 jid
+\f1 \'c8\'b7\'b6\'a8\'d7\'d4\'bc\'ba\'b5\'c4\'d4\'da\'cf\'df\'d7\'b4\'cc\'ac
+\f0 \
+2.
+\f1 \'d4\'da
+\f0 XMPPManager+Presence
+\f1 \'d6\'d0\'d3\'d0\'b4\'fa\'c0\'ed\'b7\'bd\'b7\'a8\'bc\'e0\'b2\'e2\'b6\'a9\'d4\'c4\'ba\'c3\'d3\'d1\'b5\'c4\'d7\'b4\'cc\'ac
+\f0 \
+\pard\pardeftab720\partightenfactor0
+
+\f2\b \cf0 \cb1 2.
+\f1 \'d4\'da\'b3\'cc\'d0\'f2\'bd\'f8\'c8\'eb\'ba\'f3\'cc\'a8\'d6\'ae\'ba\'f3\'be\'cd\'ce\'de\'b7\'a8\'bd\'d3\'ca\'d5\'b5\'bd\'cf\'fb\'cf\'a2\'a3\'ac\'d2\'b2\'c3\'bb\'d3\'d0\'d4\'b6\'b3\'cc\'ba\'cd\'b1\'be\'b5\'d8\'cd\'c6\'cb\'cd
+\f2 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf0 \cb6 xxx\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b \cf0 \cb1 3.
+\f1 \'ca\'b9\'d3\'c3\'bc\'ab\'b9\'e2\'cd\'c6\'cb\'cd\'a1\'a2\'cd\'b3\'bc\'c6\'a1\'a2\'b6\'cc\'d0\'c5\'a1\'a2\'b5\'da\'c8\'fd\'b7\'bd\'b7\'d6\'cf\'ed
+\f2 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf0 \cb6 xxx\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b \cf0 \cb1 4.
+\f1 \'ce\'a2\'d0\'c5\'c9\'a8\'c2\'eb\'b5\'c7\'c2\'bc
+\f2 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf0 \cb6 xxx\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b \cf0 \cb1 5.
+\f1 \'ce\'a2\'d0\'c5\'c1\'b3\'b2\'bf\'ca\'b6\'b1\'f0\'b5\'c7\'c2\'bc
+\f2 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf0 \cb6 xxx\
+\pard\pardeftab720\partightenfactor0
+
+\f2\b \cf0 \cb1 5.
+\f1 \'bb\'e3\'d1\'b6
+\f2 SDK
+\f1 \'bf\'aa\'b7\'a2
+\f2 \
+\pard\pardeftab720\partightenfactor0
+
+\f0\b0 \cf0 \cb6 xxx\cb1 \kerning1\expnd0\expndtw0 \
+}

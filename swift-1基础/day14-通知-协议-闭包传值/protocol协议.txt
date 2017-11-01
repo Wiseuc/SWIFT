@@ -1,0 +1,48 @@
+
+
+
+
+定义协议
+
+
+定义协议通过关键字Protocol 
+protocol someProtocol {
+      //协议内容
+}
+
+协议可以继承一个或多个协议
+protocol someProtocol2 ：someProtocol  {
+      //协议内容
+}
+
+
+// 定义协议,指定方法要求
+protocol RandomNumberGenerator {
+    func random() -> Double    // 实现该协议,需要实现该方法
+}
+
+class LinearCongruentialGenerator :RandomNumberGenerator {
+    var lastRandom = 42.0
+    let m = 139968.0
+    let a = 3877.0
+    let c = 29573.0
+
+    // 实现协议方法
+    func random() -> Double {
+        lastRandom = ((lastRandom * a + c) % m)
+        return lastRandom / m
+    }
+}
+
+let generator = LinearCongruentialGenerator()
+print("随机数:\(generator.random())")          //结果:随机数: 0.37464991998171
+print("另一个随机数:\(generator.random())")     //结果:另一个随机数: 0.729023776863283
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,95 @@
+
+
+
+
+
+
+使用
+
+0.导入头文件
+import SwiftyJSON
+
+
+1.初始化
+let json = JSON(data: dataFromNetworking)
+let json = JSON(jsonObject)
+
+
+
+
+2. Subscript下标？什么鬼
+
+取double：        let name = json[0].double
+取stringValue     let name = json["name"].stringValue
+从一个数组取string  let name = json[1]["like"][2]["name"].string  
+（取数组第一个，字典【“like”】，数组第二个，字典【“name”】。string值）
+
+
+3.循环
+
+循环字典：key
+for (key: String, subJson: JSON) in json {
+   
+}
+
+循环数组:index
+for (index: String, subJson: JSON) in json {
+   
+}
+
+
+4.使用可选
+
+//是否存在NSNumber
+if let id = json["user"]["favourites_count"].number {
+   //。。。
+} else {
+   print(json["user"]["favourites_count"].error!)
+}
+
+//是否存在String
+if let id = json["user"]["name"].string {
+   //。。。
+} else {
+   print(json["user"]["name"].error!)
+}
+
+//是否存在Bool
+if let id = json["user"]["is_translator"].bool {
+   //。。。
+} else {
+   print(json["user"]["is_translator"].error!)
+}
+
+//是否存在Int
+if let id = json["user"]["id"].int {
+   //。。。
+} else {
+   print(json["user"]["id"].error!)
+}
+
+
+
+5.不使用可选
+
+Non-optional getter is named xxxValue
+不使用可选类型，在获取值时.xxxValue
+
+//If not a Number or nil, return 0(如果不是Int型，或者为nil，返回0)
+let id: Int = json["id"].intValue
+
+
+//If not a String or nil, return "" (如果不是String型，或者为nil，返回“”)
+let name: String = json["name"].stringValue
+
+//If not an Array or nil, return []  (如果不是Array型，或者为nil，返回[])
+let list: Array<JSON> = json["list"].arrayValue
+
+//If not a Dictionary or nil, return [:] (如果不是Dictionary型，或者为nil，返回[:])
+let user: Dictionary<String, JSON> = json["user"].dictionaryValue
+
+
+
+
+
+
